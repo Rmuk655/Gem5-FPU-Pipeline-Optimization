@@ -1,0 +1,106 @@
+Commands to compile and run the float file
+gcc -O3 Convolutions_Float.c -o Convolutions_Float
+.\Convolutions_Float
+
+Commands to compile and run the integrated file
+gcc -O0 Convolutions_Integrated.c -o Convolutions_Integrated
+.\Convolutions_Integrated
+
+#define no_of_trials 1000000
+#define IU 16
+#define IU_cycles 1
+#define FPU 1
+#define FPU_cycles 5
+
+4 3
+1 2 3 4
+1 0 -1
+1 2 2 2 -3 -4 
+Average elapsed time for int: 0.000000124 seconds
+Average elapsed time for float: 0.000000101 seconds
+
+gcc -O1 Convolutions_Integrated.c -o Convolutions_Integrated
+.\Convolutions_Integrated
+
+#define no_of_trials 1000000
+#define IU 16
+#define IU_cycles 1
+#define FPU 1
+#define FPU_cycles 5
+
+4 3
+1 2 3 4
+1 0 -1
+1 2 2 2 -3 -4 
+Average elapsed time for int: 0.000000059 seconds
+Average elapsed time for float: 0.000000053 seconds
+
+gcc -O2 Convolutions_Integrated.c -o Convolutions_Integrated
+.\Convolutions_Integrated
+
+#define no_of_trials 1000000
+#define IU 16
+#define IU_cycles 1
+#define FPU 1
+#define FPU_cycles 5
+
+4 3
+1 2 3 4
+1 0 -1
+1 2 2 2 -3 -4 
+Average elapsed time for int: 0.000000073 seconds
+Average elapsed time for float: 0.000000071 seconds
+
+gcc -O3 Convolutions_Integrated.c -o Convolutions_Integrated
+.\Convolutions_Integrated
+
+#define no_of_trials 1000000
+#define IU 16
+#define IU_cycles 1
+#define FPU 1
+#define FPU_cycles 5
+
+4 3
+1 2 3 4
+1 0 -1
+1 2 2 2 -3 -4 
+Average elapsed time for int: 0.000000078 seconds
+Average elapsed time for float: 0.000000060 seconds
+
+#define no_of_trials 1000000
+#define IU 4
+#define IU_cycles 1
+#define FPU 2
+#define FPU_cycles 3
+
+4 3
+1 2 3 4
+1 0 -1
+1 2 2 2 -3 -4 
+Average elapsed time for int: 0.000000077 seconds
+Average elapsed time for float: 0.000000064 seconds
+
+#define no_of_trials 1000000
+#define IU 4
+#define IU_cycles 1
+#define FPU 2
+#define FPU_cycles 5
+
+4 3
+1 2 3 4
+1 0 -1
+1 2 2 2 -3 -4 
+Average elapsed time for int: 0.000000075 seconds
+Average elapsed time for float: 0.000000062 seconds
+
+#define IU 1
+#define IU_cycles 3
+#define FPU 16
+#define FPU_cycles 3
+
+4 3
+1 2 3 4
+1 0 -1
+1 2 2 2 -3 -4 
+Average elapsed time for int: 0.000000103 seconds
+Average elapsed time for float: 0.000000089 seconds

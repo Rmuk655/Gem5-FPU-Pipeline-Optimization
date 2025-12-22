@@ -1,0 +1,91 @@
+Commands to compile and run
+gcc -O0 Factorial_integrated.c -o Factorial_integrated
+gcc -O1 Factorial_integrated.c -o Factorial_integrated
+gcc -O2 Factorial_integrated.c -o Factorial_integrated
+gcc -O3 Factorial_integrated.c -o Factorial_integrated
+.\Factorial_integrated
+20
+
+#define no_of_trials 1000000
+#define IU 4
+#define IU_cycles 1
+#define FPU 2
+#define FPU_cycles 3
+20  
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+The maximum valid value of n in fact_float(n) is 20
+The maximum valid value of n in fact_double(n) is 20
+Overflow!The maximum valid value of n for which fact_int(n) and fact_float(n) values match is 20
+Overflow!The maximum valid value of n for which fact_int(n) and fact_double(n) values match is 20
+Average elapsed time for fact_int(): 0.000000057 seconds
+Average elapsed time for fact_float(): 0.000000039 seconds
+Average elapsed time for fact_double(): 0.000000040 seconds
+
+#define no_of_trials 1000000
+#define IU 4
+#define IU_cycles 2
+#define FPU 2
+#define FPU_cycles 4
+20  
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+The maximum valid value of n in fact_float(n) is 20
+The maximum valid value of n in fact_double(n) is 20
+Overflow!The maximum valid value of n for which fact_int(n) and fact_float(n) values match is 20
+Overflow!The maximum valid value of n for which fact_int(n) and fact_double(n) values match is 20
+Average elapsed time for fact_int(): 0.000000054 seconds
+Average elapsed time for fact_float(): 0.000000041 seconds
+Average elapsed time for fact_double(): 0.000000040 seconds
+
+#define no_of_trials 1000000
+#define IU 4
+#define IU_cycles 3
+#define FPU 2
+#define FPU_cycles 5
+20
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+The maximum valid value of n in fact_float(n) is 20
+The maximum valid value of n in fact_double(n) is 20
+Overflow!The maximum valid value of n for which fact_int(n) and fact_float(n) values match is 20
+Overflow!The maximum valid value of n for which fact_int(n) and fact_double(n) values match is 20
+Average elapsed time for fact_int(): 0.000000051 seconds
+Average elapsed time for fact_float(): 0.000000039 seconds
+Average elapsed time for fact_double(): 0.000000039 seconds
+
+#define no_of_trials 1000000
+#define IU 4
+#define IU_cycles 1
+#define FPU 2
+#define FPU_cycles 5
+20
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+Overflow!The maximum valid value of n in fact_float(n) is 20
+Overflow!The maximum valid value of n in fact_double(n) is 20
+Overflow!Overflow!Overflow!The maximum valid value of n for which fact_int(n) and fact_float(n) values match is 20
+Overflow!Overflow!Overflow!The maximum valid value of n for which fact_int(n) and fact_double(n) values match is 20
+Average elapsed time for fact_int(): 0.000000051 seconds
+Average elapsed time for fact_float(): 0.000000040 seconds
+Average elapsed time for fact_double(): 0.000000040 seconds
+
+#define no_of_trials 1000000
+#define IU 16
+#define IU_cycles 3
+#define FPU 1
+#define FPU_cycles 3
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+The factorial of 20 is 2432902008176640000
+Overflow!The maximum valid value of n in fact_float(n) is 20
+Overflow!The maximum valid value of n in fact_double(n) is 20
+Overflow!Overflow!Overflow!The maximum valid value of n for which fact_int(n) and fact_float(n) values match is 20
+Overflow!Overflow!Overflow!The maximum valid value of n for which fact_int(n) and fact_double(n) values match is 20
+Average elapsed time for fact_int(): 0.000000048 seconds
+Average elapsed time for fact_float(): 0.000000040 seconds
+Average elapsed time for fact_double(): 0.000000041 seconds

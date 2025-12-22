@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "factorial_integer.h": "c",
+        "stdio.h": "c",
+        "time.h": "c",
+        "limits.h": "c"
+    }
+}

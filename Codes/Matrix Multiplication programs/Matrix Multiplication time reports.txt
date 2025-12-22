@@ -1,0 +1,63 @@
+Commands to compile and run
+gcc -O0 Matrix_Multiplication_Integrated.c -o Matrix_Multiplication_Integrated
+gcc -O1 Matrix_Multiplication_Integrated.c -o Matrix_Multiplication_Integrated
+gcc -O2 Matrix_Multiplication_Integrated.c -o Matrix_Multiplication_Integrated
+gcc -O3 Matrix_Multiplication_Integrated.c -o Matrix_Multiplication_Integrated
+.\Matrix_Multiplication_Integrated
+
+3 3 3
+10 0 0 0 10 0 0 0 10
+10 0 0 0 10 0 0 0 10
+INTEGER
+Average elapsed time: 0.0000000030 seconds
+FLOAT
+Average elapsed time: 0.0000000030 seconds
+
+2 2 2
+1 0 0 1
+1 0 0 1
+
+INTEGER
+Average elapsed time: 0.000000010 seconds
+FLOAT
+Average elapsed time: 0.000000015 seconds
+
+10 10 10
+1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+
+INTEGER
+Average elapsed time: 0.000000559 seconds
+FLOAT
+Average elapsed time: 0.000000654 seconds
+
+gcc -O3 -march=native Matrix_Multiplication_Integrated.c -o Matrix_Multiplication_Integrated
+.\Matrix_Multiplication_Integrated.exe
+
+gcc -O3 -march=native -ffast-math Matrix_Multiplication_Integrated.c -o Matrix_Multiplication_Integrated
+.\Matrix_Multiplication_Integrated.exe
+
+2 2 2
+1 0 0 1
+1 0 0 1
+1 0 
+0 1
+1 0
+0 1
+1 0 
+0 1
+INTEGER
+Average elapsed time: 0.000000200 seconds
+FLOAT
+Average elapsed time: 0.000000300 seconds
+
+10 10 10
+1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+
+INTEGER
+Average elapsed time: 0.000001100 seconds
+FLOAT
+Average elapsed time: 0.000001500 seconds
+
+
