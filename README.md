@@ -7,7 +7,7 @@ The project explores how **Floating Point Units (FPUs)** can be leveraged to acc
 
 ---
 
-## 📘 Project Overview
+## Project Overview
 
 Modern processors contain powerful **Floating Point Units (FPUs)** designed for high-throughput numerical computation.  
 This project investigates whether and how FPUs can be used to:
@@ -20,7 +20,7 @@ The work is inspired by architectural research and focuses on **performance anal
 
 ---
 
-## 🎯 Objectives
+## Objectives
 
 The primary objectives of this project are:
 
@@ -32,7 +32,7 @@ The primary objectives of this project are:
 
 ---
 
-## 🧠 Core Concepts Involved
+## Core Concepts Involved
 
 - CPU microarchitecture
 - Integer vs floating-point execution units
@@ -42,7 +42,7 @@ The primary objectives of this project are:
 
 ---
 
-## 🧪 Experimental Setup
+## Experimental Setup
 
 The project involves:
 
@@ -57,7 +57,7 @@ Benchmarks and test programs are chosen to clearly demonstrate the effects of FP
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 .
@@ -75,7 +75,7 @@ Benchmarks and test programs are chosen to clearly demonstrate the effects of FP
 
 ---
 
-## ⚙️ Compilation & Execution
+## Compilation & Execution
 
 Programs are implemented in **C/C++**.
 
@@ -97,7 +97,7 @@ Specific build instructions (if any) are provided inside the respective folders.
 
 ---
 
-## 📊 Evaluation & Analysis
+## Evaluation & Analysis
 
 The evaluation focuses on:
 
