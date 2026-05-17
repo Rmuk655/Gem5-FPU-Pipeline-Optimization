@@ -109,17 +109,3 @@ The evaluation focuses on:
 Results are documented in the `results/` and `report/` directories.
 
 ---
-
-## ⚠️ Academic Integrity
-
-This project is part of academic coursework.
-
-- All work is original
-- External references are properly cited
-- Collaboration policies follow course guidelines
-
----
-
-## 📌 Acknowledgements
-
-This project was carried out as part of the **Computer Architecture** course, inspired by academic research on processor microarchitecture and performance optimization.
