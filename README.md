@@ -1,4 +1,4 @@
-# Computer Architecture Project  
+# Gem5 FPU Pipeline Optimization  
 ## Speeding Up Integer Programs with FPUs
 
 This repository contains the **course project** for the Computer Architecture course, based on the project proposal titled **“Speeding Up Integer Programs with FPUs”**.
