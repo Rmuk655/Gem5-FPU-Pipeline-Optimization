@@ -21,6 +21,15 @@ The split point is chosen from a simple throughput model. Each program defines t
 
 and computes a ratio `k = (FPU / IU) * (IU_cycles / FPU_cycles)`. For a factorial of `n`, the integer path handles the top `n - n*k/(k+1)` factors and the floating-point path handles the remaining low factors, so the two chains can overlap in the pipeline.
 
+```mermaid
+flowchart LR
+  N["n factors to multiply"] --> K["split by k = (FPU/IU) x (IU cycles / FPU cycles)"]
+  K --> I["integer chain: top factors"]
+  K --> F["FP chain: low factors"]
+  I --> M["combine: int x (int)fp"]
+  F --> M
+```
+
 ## What is in the repository
 
 | Folder | Programs | Variants |
