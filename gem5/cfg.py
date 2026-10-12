@@ -37,7 +37,7 @@ system = System()
 system.clk_domain = SrcClockDomain(clock="2GHz", voltage_domain=VoltageDomain())
 system.mem_mode = "timing"
 system.mem_ranges = [AddrRange("512MB")]
-system.cpu = X86O3CPU(fuPool=pool)
+system.cpu = X86O3CPU(instQueues=[IQUnit(fuPool=pool)])
 system.membus = SystemXBar()
 system.l2bus = L2XBar()
 system.cpu.icache = L1(); system.cpu.dcache = L1(); system.l2 = L2()
