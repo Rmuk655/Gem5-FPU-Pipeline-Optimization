@@ -36,6 +36,7 @@ flowchart LR
 |---|---|---|
 | `Codes/Factorial programs/` | Factorial | integer, float, double, integrated (integer + FPU split) |
 | `Codes/Integer Convolutions/` | 1-D convolution | integer, float, double, integrated |
+| `Teammate-Nehith-RISCV-gem5/` | Matrix multiplication (loop swap, unrolling, float offload), minimum element, plus the group's final report | see its README |
 | `Codes/Matrix Multiplication programs/` | Matrix multiplication | integer, float, integrated |
 
 Each folder also holds a `* time reports.txt` file with the compiler flags and measured timings. `Project_Problem_Statement.pdf` is the original problem statement.
