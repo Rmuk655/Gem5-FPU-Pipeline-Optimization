@@ -78,29 +78,39 @@ All figures are average seconds per call from the `time reports` files, native `
 
 ## gem5 results
 
-Run with gem5 v25.1.0.1 (X86, syscall-emulation, O3 CPU, 2 GHz), kernels built with `gcc -O2 -static`. Files are in `gem5/`: `cfg.py` (the full configuration), `h_*.c` (harnesses that call the unmodified kernel functions), `one.sh`/`jobs.txt` (run list), `raw_results.txt` (instructions, cycles, FP ops per run).
+gem5 v25.1.0.1, X86, syscall-emulation, O3 CPU at 2 GHz, kernels built with `gcc -static` at the stated `-O` level. Everything is in `gem5/`: `cfg.py` (full configuration), `h_*.c` (harnesses calling the unmodified kernel functions), `build.sh`, `jobs.txt`/`one.sh` (run list), `raw_results.txt` (cycles and FP-op counts per run).
 
-Configuration (set to match the programs' macros): 4 integer ALUs and 4 integer multipliers at 1 cycle; 2 FP units at 3 cycles (all scalar/SIMD FP op classes share these two units; FP divide 12, sqrt 24, unpipelined); 32 kB 8-way L1I and L1D (2-cycle), 256 kB 8-way L2 (10-cycle), DDR3-1600. Each result is one deterministic run; per-call numbers are `(run with N calls - run with 0 calls) / N`, so process start-up is removed.
+Configuration: IntALU and IntMult units = IU count (1, 2 or 4) at `IU_cycles`; all scalar/SIMD FP op classes share FPU = 2 units at `FPU_cycles` (FP divide 12, sqrt 24, unpipelined); 32 kB 8-way L1I/L1D (2-cycle), 256 kB 8-way L2 (10-cycle), DDR3-1600. The latency pair in each row is the pair compiled into the kernel's macros and set in the simulated machine. Each point is a single deterministic run; per-call numbers are `(run with N calls - run with 0 calls) / N`.
 
-| Kernel | variant | cycles/call | vs int | FP ops/call | FPU utilisation |
-|---|---|---|---|---|---|
-| factorial n=20 | int / float / double | 136 / 141 / 163 | 1.00 / 1.04 / 1.20x | 0 / 20 / 12 | 0% / 7% / 4% |
-| convolution 4x3 | int / float / double | 131 / 141 / 158 | 1.00 / 1.08 / 1.21x | 16 / 13 / 13 | 6% / 5% / 4% |
-| convolution 64x64 | int / float / double | 20667 / 19475 / 21857 | 1.00 / 0.94 / 1.06x | 16 / 13 / 1293 | ~0% / ~0% / 3% |
-| matrix mult 10x10 | int / float | 3031 / 3200 | 1.00 / 1.06x | 0 / 904 | 0% / 14% |
-| matrix mult 32x32 | int / float | 98667 / 167373 | 1.00 / 1.70x | 0 / 21508 | 0% / 6% |
+Cycles per call, and ratio to the integer-only version (below 1 is faster):
 
-FPU utilisation = issued FP-class ops / (2 FP units x cycles). Small non-zero FP-op counts in int rows are SSE-class instructions the compiler emitted for integer code (not investigated further).
+| Kernel | Opt | IU | latency (IU/FPU) | int | float | double | float / int | double / int |
+|---|---|---|---|---|---|---|---|---|
+| factorial n=20 | O2 | 4 | 1/3 | 112 | 143 | 139 | 1.27 | 1.24 |
+| factorial n=20 | O2 | 1 | 1/3 | 380 | 417 | 450 | 1.10 | 1.18 |
+| factorial n=20 | O3 | 4 | 1/3 | 129 | 148 | 135 | 1.15 | 1.05 |
+| factorial n=20 | O0 | 4 | 3/5 | 572 | 480 | 498 | 0.84 | 0.87 |
+| conv 500x500 | O2 | 4 | 1/3 | 1.25M | 1.30M | 1.60M | 1.04 | 1.28 |
+| conv 500x500 | O2 | 1 | 1/3 | 2.76M | 3.76M | 3.31M | 1.36 | 1.20 |
+| conv 500x500 | O3 | 4 | 1/3 | 1.07M | 0.51M | 0.59M | 0.48 | 0.56 |
+| conv 500x500 | O3 | 1 | 1/3 | 1.13M | 0.53M | 0.63M | 0.47 | 0.56 |
+| conv 500x500 | O3 | 4 | 3/5 | 1.94M | 0.70M | 0.93M | 0.36 | 0.48 |
+| matmul 32x32 | O3 | 4 | 1/3 | 96.7k | 104.9k | - | 1.08 | - |
+| matmul 32x32 | O3 | 1 | 1/3 | 351k | 338k | - | 0.96 | - |
+| matmul 32x32 | O2 | 4 | 1/3 | 95.8k | 167k | - | 1.75 | - |
 
-Findings:
-- No FPU-assisted variant was faster in a way that comes from FPU work. The only faster result (convolution 64x64 float, 0.94x) executes about 13 FP ops per call: with the macros in `Convolutions_Integrated.c` (`FPU_cycles = 5`, cubed ratio) the float split index rounds to 0, so that variant is the integer code and the difference is code layout, not FPU assistance.
-- Where the split does move work to the FPU (factorial, matrix multiplication), cycles went up: int-to-float conversions and the combine step cost more than the overlap saves. FPU utilisation never exceeded 14%.
-- These runs do not reproduce the native speed-ups in the time reports above, which should therefore be treated as measurement noise or machine effects, not as evidence for the technique.
-- The FU latencies were identical in an earlier run with a mis-built FP pool (about 6 FP-capable units instead of 2) and gave the same cycle counts, so the FP unit count and latency are not the bottleneck here.
+The full grid (all three latency pairs, `-O0/-O2/-O3`, IU = 1, 2, 4) is in `raw_results.txt`.
+
+What the runs show:
+- **Convolution at `-O3` is about 2x faster** with the float split (0.36-0.48x cycles), and the gain grows as more rows are split to float. It is the same at IU = 1, 2 and 4, so it is not integer units being relieved. With `-O3 -fno-tree-vectorize` the difference disappears (float 1.03x of int), so the gain comes from the compiler vectorising the float-split loop better than the integer loop on baseline x86-64 (SSE2 has no 32-bit integer vector multiply). At `-O0` and `-O2` the float split is neutral or slower.
+- **Factorial and matrix multiplication** do not gain: the split costs conversions and a combine step. Factorial is 0.84-0.87x only at `-O0` and 1.0-1.3x elsewhere; matmul is within 4% either way at IU = 1-2 and slower at IU = 4.
+- **FPU utilisation is low**: at most about 14% (matmul float) and under 1% for the `-O3` convolution, counting issued FP-class ops against 2 FP units. The "integer units saturated, FPU idle" premise only partly holds even at IU = 1.
+- The speed-ups in the native time reports above are therefore only partly reproduced: convolution at `-O3` yes (through vectorisation), factorial no.
+- Convolution's float split index depends on the macros (`FPU_cycles`, cubed ratio): at `FPU_cycles = 5` and small `m` it rounds to 0 rows, so small-`m` runs measure the integer code.
 
 ## What the native results say
 
-- In the native timings the float versions of factorial and convolution were faster than integer-only by roughly 3% to 32%. The gem5 runs above do not reproduce this.
+- In the native timings the float versions of factorial and convolution were faster than integer-only by roughly 3% to 32%. The gem5 runs above reproduce it for convolution at `-O3` (through vectorisation), not for factorial.
 - The gain is small and varies with optimization level, so it should be read as an indication, not a general speed-up. The kernels are tiny and are timed at nanosecond scale.
 - Results are machine-dependent: a re-run of `Factorial_integrated.c` at `-O2` on a different machine (WSL2) gave 104 ns (int), 97 ns (float) and 105 ns (double), i.e. about 7% for float and no gain for double.
 - Matrix multiplication did not benefit: float conversions and the combination step cost more than the overlap gained.
@@ -108,6 +118,6 @@ Findings:
 
 ## Limitations
 
-- The native timings above are from compiled programs on a normal CPU. The gem5 results are a single configuration (one O3 core, one set of IU/FPU parameters), one run per point, at small sizes; they were not repeated across configurations or optimisation levels. An earlier gem5 run by a teammate is not part of this repository and is not reported here.
+- The native timings above are from compiled programs on a normal CPU. The gem5 results are X86 O3 only (a RISC-V setup by a teammate is in `Teammate-Nehith-RISCV-gem5/` and was not re-run on RISC-V here), one deterministic run per point, small kernels, a fixed cache hierarchy, and a modelled FU pool. The gem5 effect for convolution at `-O3` is a compiler-vectorisation effect, not proof that scalar FPU offload relieves saturated integer units.
 - The `IU`/`FPU` parameters are a model supplied by the programmer; they are not read from hardware.
 - Single machine, no variance or confidence intervals.

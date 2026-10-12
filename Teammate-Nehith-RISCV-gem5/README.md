@@ -6,7 +6,7 @@ His `makefile` targets RISC-V gem5 (`riscv64-*-gcc`, `se.py --cpu-type=O3CPU --c
 
 ## What was re-checked on X86 gem5 (O3, default FU pool as in his Table 1)
 
-Same machine model as `../gem5/cfg.py` with `DEFAULT_FU=1`; `gcc -O3 -static`; one run each; my 32 kB L1 / 256 kB L2 rather than his `--caches --l2cache` defaults.
+gem5's default O3 FU pool (`DEFAULT_FU=1` in `../gem5/cfg.py`); `gcc -O3 -static`; one run each; my 32 kB L1 / 256 kB L2 rather than his `--caches --l2cache` defaults.
 
 | Kernel | Variant | Cycles | Output |
 |---|---|---|---|
