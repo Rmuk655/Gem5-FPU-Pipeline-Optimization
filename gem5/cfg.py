@@ -23,7 +23,7 @@ class MyFPU(FUDesc):
 class MyPool(FUPool):
     FUList = [MyIntALU(), MyIntMultDiv(), MyFPU(), ReadPort(), Matrix_Unit(),
               System_Unit(), PredALU(), WritePort(), RdWrPort()]
-pool = MyPool()
+pool = DefaultFUPool() if os.environ.get("DEFAULT_FU") else MyPool()
 print("FUPOOL: IU", IU_N, IU_L, "FPU", FP_N, FP_L, "fp op classes", len(MyFPU.opList))
 
 class L1(Cache):
