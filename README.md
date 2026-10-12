@@ -86,6 +86,6 @@ All figures are average seconds per call from the `time reports` files, native `
 
 ## Limitations
 
-- Timings are from native runs of the compiled programs, not from gem5 cycle-accurate simulation; the repository contains no gem5 configuration or statistics files.
+- Timings are from native runs of the compiled programs on a normal CPU. The project proposal called for gem5 cycle-accurate simulation; a teammate ran the programs on gem5, but those runs are not part of this repository, and the author did not run them. This repository contains no gem5 configuration or statistics files.
 - The `IU`/`FPU` parameters are a model supplied by the programmer; they are not read from hardware.
 - Single machine, no variance or confidence intervals.
