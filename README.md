@@ -19,7 +19,7 @@ The split point is chosen from a simple throughput model. Each program defines t
 #define FPU_cycles  3   // latency of a floating-point op
 ```
 
-and computes a ratio `k = (FPU / IU) * (IU_cycles / FPU_cycles)`. For a factorial of `n`, the integer path handles the top `n - n*k/(k+1)` factors and the floating-point path handles the remaining low factors, so the two chains can overlap in the pipeline.
+and computes a ratio `k = (FPU / IU) * (IU_cycles / FPU_cycles)`. (The `double` path uses this formula; the `float` path in `Factorial_integrated.c` raises the cycle ratio to 0.1 and in `Convolutions_Integrated.c` to the power 3.) For a factorial of `n`, the integer path handles the top `n - n*k/(k+1)` factors and the floating-point path handles the remaining low factors, so the two chains can overlap in the pipeline.
 
 ```mermaid
 flowchart LR
@@ -38,6 +38,7 @@ flowchart LR
 | `Codes/Integer Convolutions/` | 1-D convolution | integer, float, double, integrated |
 | `Teammate-Nehith-RISCV-gem5/` | Matrix multiplication (loop swap, unrolling, float offload), minimum element, plus the group's final report | see its README |
 | `Codes/Matrix Multiplication programs/` | Matrix multiplication | integer, float, integrated |
+| `gem5/` | Harnesses and scripts for the gem5 sweep over the integrated kernels | see "gem5 results" below |
 
 Each folder also holds a `* time reports.txt` file with the compiler flags and measured timings. `Project_Problem_Statement.pdf` is the original problem statement.
 

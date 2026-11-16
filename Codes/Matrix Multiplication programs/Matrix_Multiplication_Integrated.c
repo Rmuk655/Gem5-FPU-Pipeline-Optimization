@@ -93,20 +93,20 @@ void print_matrix(int m, int n, int matrix[m][n])
 int main()
 {
     int m, n, p;
-    scanf("%d %d %d", &m, &n, &p);
+    if (scanf("%d %d %d", &m, &n, &p) != 3 || m <= 0 || n <= 0 || p <= 0) return 1;
     int matrix_1[m][n], matrix_2[n][p], product_int[m][p], product_float[m][p];
     for (int i = 0; i < m; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            scanf("%d", &matrix_1[i][j]);
+            if (scanf("%d", &matrix_1[i][j]) != 1) return 1;
         }
     }
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < p; j++)
         {
-            scanf("%d", &matrix_2[i][j]);
+            if (scanf("%d", &matrix_2[i][j]) != 1) return 1;
         }
     }
     // print_matrix(m, n, matrix_1);

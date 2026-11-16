@@ -105,7 +105,7 @@ void print_vector(int size, int C[size])
 int main()
 {
     int m, n;
-    scanf("%d %d", &m, &n);
+    if (scanf("%d %d", &m, &n) != 2 || m <= 0 || n <= 0) return 1;
     int A[m], B[n], C[m + n - 1];
     for (int i = 0; i < m; i++)
     {
