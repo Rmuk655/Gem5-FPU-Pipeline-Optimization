@@ -4,8 +4,9 @@ ASMDIR  = asm
 BINDIR  = bin
 STATSDIR = stats
 
-# COMPILER = riscv64-linux-gnu-gcc
-COMPILER = riscv64-unknown-elf-gcc
+# riscv64-unknown-elf-gcc (Ubuntu package) ships no libc; the linux-gnu cross compiler links with --static.
+# Override with: make COMPILER=<cross-gcc>
+COMPILER ?= riscv64-linux-gnu-gcc
 OPTFLAGS = -O3 --static
 
 GEM5_EXEC = $(GEM5DIR)/build/RISCV/gem5.opt

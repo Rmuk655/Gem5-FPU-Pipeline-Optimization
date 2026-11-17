@@ -6,3 +6,7 @@
 graphify-out/
 .vscode/
 .tools/
+*.out
+gem5/bin/
+gem5/src/
+gem5/out/

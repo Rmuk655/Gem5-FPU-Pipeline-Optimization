@@ -42,6 +42,17 @@ flowchart LR
 
 Each folder also holds a `* time reports.txt` file with the compiler flags and measured timings. `Project_Problem_Statement.pdf` is the original problem statement.
 
+## Setup
+
+Tested on Ubuntu 24.04 (WSL works). Needs `sudo` for the package install.
+
+```bash
+bash setup.sh                  # gcc, RISC-V cross compilers, gem5 build deps; builds the native kernel and the gem5 kernel binaries in gem5/bin/
+WITH_GEM5=1 bash setup.sh      # additionally clones gem5 v25.1.0.1 (https://github.com/gem5/gem5) into ~/gem5 and builds build/X86/gem5.opt
+```
+
+The gem5 build runs `scons build/X86/gem5.opt -j$(nproc)` and takes 30-90 minutes with several GB of disk and RAM, so it is opt-in. The gem5 sweep then runs with `cd gem5 && xargs -P4 -L1 ./one.sh < jobs.txt` (see "gem5 results"). `Teammate-Nehith-RISCV-gem5/makefile` needs a separate RISC-V gem5 build (`scons build/RISCV/gem5.opt`) in a `gem5/` folder next to it; that part is not set up by the script.
+
 ## Building and running
 
 Plain C with `gcc`; no dependencies.
